@@ -1,0 +1,5 @@
+*.pyc
+node_modules
+*.sqlite
+*.sublime-project
+*.sublime-workspace
