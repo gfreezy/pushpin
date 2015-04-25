@@ -3,7 +3,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 
 
 const title = (
-  <h3>Panel title</h3>
+  <h3>Panel title hellojkljlkj</h3>
 );
 
 const panelsInstance = (

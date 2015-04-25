@@ -4,16 +4,25 @@
   "description": "",
   "main": "",
   "dependencies": {
+    "assets-webpack-plugin": "^0.3.0",
     "grunt": "^0.4.5"
   },
   "devDependencies": {
-    "babelify": "^6.0.2",
+    "babel-core": "^5.1.11",
+    "babel-loader": "^5.0.0",
+    "chunk-manifest-webpack-plugin": "0.0.1",
+    "css-loader": "^0.11.2",
+    "file-loader": "^0.8.1",
     "flux": "^2.0.1",
     "grunt": "^0.4.5",
-    "grunt-browserify": "^3.7.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-webpack": "^1.0.8",
     "immutable": "^3.7.2",
     "keymirror": "^0.1.1",
-    "react-bootstrap": "^0.20.3"
+    "react-bootstrap": "^0.20.3",
+    "style-loader": "^0.11.0",
+    "url-loader": "^0.5.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
