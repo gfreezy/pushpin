@@ -1,9 +1,12 @@
-import os
+from os.path import join, dirname, abspath
 
 
-BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+BASE_PATH = dirname(abspath(__file__))
 
 
 class Config(object):
     db_name = 'pushpin.sqlite'
-    db = os.path.join(BASE_PATH, db_name)
+    db = join(BASE_PATH, db_name)
+    asset_file = join(BASE_PATH, 'webpack-assets.json')
+    asset_host = 'http://192.168.1.101:9090'
+    debug = True

@@ -3,3 +3,5 @@ node_modules
 *.sqlite
 *.sublime-project
 *.sublime-workspace
+static/js/dist/
+webpack-assets.json
