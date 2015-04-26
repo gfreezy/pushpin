@@ -3,12 +3,12 @@ import Panel from 'react-bootstrap/lib/Panel';
 
 
 const title = (
-  <h3>Panel title hellojkljlkj</h3>
+  <h3>Panel title</h3>
 );
 
 const panelsInstance = (
   <div>
-    <Panel header='Panel heading without title'>
+    <Panel header='d ' style={{color: "red"}}>
       Panel content
     </Panel>
     <Panel header={title}>

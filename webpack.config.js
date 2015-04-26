@@ -39,10 +39,6 @@ module.exports = {
 			jQuery: "jquery",
 			$: "jquery"
 		}),
-		new SaveAssetsJson(),
-		new webpack.optimize.CommonsChunkPlugin({
-			names: "vender",
-			minChunks: Infinity,
-		}),
+		new SaveAssetsJson()
 	]
 };

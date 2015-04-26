@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 			options: webpackConfig,
 			build: {
 				output: {
-					filename: "[name]-[hash].min.js",
+					filename: "[name]-[chunkhash].min.js",
 					chunkFilename: "[name]-[chunkhash].min.js"
 				},
 				recordsPath: path.join(__dirname, "records.json"),
@@ -22,7 +22,10 @@ module.exports = function(grunt) {
 							"NODE_ENV": JSON.stringify("production")
 						}
 					}),
-
+					new webpack.optimize.CommonsChunkPlugin({
+						names: "vender",
+						minChunks: Infinity,
+					}),
 					new webpack.optimize.OccurenceOrderPlugin(),
 					new ChunkManifestPlugin(),
 					new webpack.optimize.DedupePlugin(),
@@ -35,20 +38,21 @@ module.exports = function(grunt) {
 				)
 			},
 			"build-dev": {
-				devtool: "sourcemap",
+				devtool: "eval",
 				debug: true
 			}
 		},
 		"webpack-dev-server": {
 			options: {
 				webpack: webpackConfig,
-				contentBase: "http://localhost:9090",
-				host: "0.0.0.0",
-				port: 9090,
+				contentBase: "http://localhost:8080",
 				info: false,
 				publicPath: "/" + webpackConfig.output.publicPath,
 				hot: true,
 				inline: true,
+				proxy: {
+					"*": "http://localhost:8080"
+				}
 			},
 			start: {
 				keepAlive: true,
@@ -67,11 +71,27 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+    browserSync: {
+      dev: {
+        bsFiles: {
+          src : [
+            'static/js/dist/*',
+            'templates/**/*.jinja2'
+          ]
+        },
+        options: {
+          watchTask: true,
+          proxy: 'http://localhost:8080',
+        }
+      }
+    },
 		clean: ["./static/js/dist/*"]
 	});
 
 	// The development server (the recommended option for development)
-	grunt.registerTask("default", ["webpack-dev-server:start"]);
+	grunt.registerTask("watch", ["webpack-dev-server"]);
+
+	grunt.registerTask("default", ["browserSync", "dev"]);
 
 	// Build and watch cycle (another option for development)
 	// Advantage: No server required, can run app from filesystem
