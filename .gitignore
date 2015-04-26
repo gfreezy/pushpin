@@ -5,3 +5,5 @@ node_modules
 *.sublime-workspace
 static/js/dist/
 webpack-assets.json
+.tox
+static/build
