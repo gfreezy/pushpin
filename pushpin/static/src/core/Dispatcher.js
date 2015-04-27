@@ -7,7 +7,6 @@
  */
 
 import Flux from 'flux';
-import PayloadSources from '../constants/PayloadSources';
 import assign from 'react/lib/Object.assign';
 
 /**
@@ -21,11 +20,7 @@ let Dispatcher = assign(new Flux.Dispatcher(), {
    * type and additional data coming from the view.
    */
   handleViewAction(action) {
-    var payload = {
-      source: PayloadSources.VIEW_ACTION,
-      action: action
-    };
-    this.dispatch(payload);
+    this.dispatch(action);
   }
 
 });

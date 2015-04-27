@@ -8,45 +8,36 @@
 
 import Dispatcher from '../core/Dispatcher';
 import ActionTypes from '../constants/ActionTypes';
-import ExecutionEnvironment from 'react/lib/ExecutionEnvironment';
-import http from 'superagent';
 
 export default {
-
-  navigateTo(path, options) {
-    if (ExecutionEnvironment.canUseDOM) {
-      if (options && options.replace) {
-        window.history.replaceState({}, document.title, path);
-      } else {
-        window.history.pushState({}, document.title, path);
-      }
-    }
-
+  /**
+   * @param {object} message New message
+   * @param {object} room Room
+   */
+  newMessage(message, room) {
     Dispatcher.handleViewAction({
-      actionType: ActionTypes.CHANGE_LOCATION,
-      path
+      actionType: ActionTypes.NEW_INCOMING_MESSAGE,
+      message: message,
+      room: room
     });
   },
-
-  loadPage(path, cb) {
+  sendMessage(message, room) {
     Dispatcher.handleViewAction({
-      actionType: ActionTypes.LOAD_PAGE,
-      path
+      actionType: ActionTypes.SEND_MESSAGE,
+      message: message,
+      room: room
     });
-
-    http.get('/api/page' + path)
-      .accept('application/json')
-      .end((err, res) => {
-        Dispatcher.handleServerAction({
-          actionType: ActionTypes.LOAD_PAGE,
-          path,
-          err,
-          page: res.body
-        });
-        if (cb) {
-          cb();
-        }
-      });
+  },
+  enterRoom(room) {
+    Dispatcher.handleViewAction({
+      actionType: ActionTypes.ENTER_ROOM,
+      room: room
+    });
+  },
+  leaveRoom(room) {
+    Dispatcher.handleViewAction({
+      actionType: ActionTypes.LEAVE_ROOM,
+      room: room
+    });
   }
-
 };

@@ -10,9 +10,9 @@ import keyMirror from 'react/lib/keyMirror';
 
 export default keyMirror({
 
-  LOAD_PAGE: null,
-  LOAD_PAGE_SUCCESS: null,
-  LOAD_PAGE_ERROR: null,
-  CHANGE_LOCATION: null
+  NEW_INCOMING_MESSAGE: null,
+  SEND_MESSAGE: null,
+  ENTER_ROOM: null,
+  LEAVE_ROOM: null
 
 });

@@ -12,3 +12,13 @@ class Message(BaseModel):
     room = ForeignKeyField(Room, related_name='messages')
     create_time = DateTimeField(default=datetime.datetime.now)
     update_time = DateTimeField(default=datetime.datetime.now)
+
+    def __json__(self):
+        return {
+            "id": str(self.id),
+            "text": self.text,
+            "html": self.text,
+            "sent": self.create_time,
+            "editedAt": self.update_time,
+            "fromUser": self.user,
+        }

@@ -27,9 +27,11 @@
     "gulp-size": "^1.2.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.4",
+    "immutable": "^3.7.2",
     "lodash": "^3.7.0",
     "minimist": "^1.1.1",
     "run-sequence": "^1.1.0",
+    "superagent": "^1.2.0",
     "webpack": "^1.8.9"
   },
   "jest": {
